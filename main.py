@@ -25,15 +25,10 @@ def home():
     tasks = db.session.query(Todo).all()
 
     if request.method == "POST":
-        print("POST")
-        post_name = request.form.to_dict()
-        for name,value in post_name.items():
-            print(name)
         task_name = request.form.get('task')
         task_status = True
 
         if task_name:
-
             new_task = Todo(
                 task_name = task_name,
                 task_status = task_status
@@ -51,9 +46,7 @@ def home():
                 task.task_status = False
                 db.session.commit()
             else:
-                print("CHECKED")
                 id = request.form.get('flexCheckChecked')
-                print(id)
                 task = Todo.query.get(id)
                 task.task_status = True
                 db.session.commit()
