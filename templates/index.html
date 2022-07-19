@@ -12,6 +12,7 @@
     <div class="container header" >
         <h1>ToDo List</h1>
     </div>
+
     <div class="container">
         <form action={{ url_for('home') }} method="post">
             <div class="mb-3">
@@ -19,6 +20,7 @@
             </div>
         </form>
     </div>
+
     {%  for task in tasks %}
     {% if task.task_status == True %}
     <div class="container">
@@ -41,17 +43,20 @@
     {%  for task in tasks %}
     {% if task.task_status == False %}
     <div class="container">
-        <form method="post">
+        <form action={{ url_for('home') }} method="post">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value={{ task.id }} id="flexCheckChecked" name="flexCheckChecked" checked onchange="this.form.submit()">
+                <!-- <input class="form-check-input" type="hidden" type="checkbox" value={{ task.id }} id="flexCheckChecked" name="flexCheckChecked" checked> -->
+                <input class="form-check-input" type="checkbox" value={{ task.id }} id="flexCheckChecked" name="flexCheckChecked" onchange="this.form.submit()">
                 <label class="form-check-label checked" for="flexCheckChecked">
+
                     {{ task.task_name }}
+
                 </label>
             </div>
         </form>
     </div>
-        {% endif %}
-        {% endfor %}
+    {% endif %}
+    {% endfor %}
         
         
 </body>

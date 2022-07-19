@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 
@@ -52,6 +51,7 @@ def home():
                 task.task_status = False
                 db.session.commit()
             else:
+                print("CHECKED")
                 id = request.form.get('flexCheckChecked')
                 print(id)
                 task = Todo.query.get(id)
